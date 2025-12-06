@@ -1,0 +1,16 @@
+{
+  "name": "aoc2025",
+  "version": "1.0.0",
+  "description": "Advent of Code 2025",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.15"
+  }
+}
