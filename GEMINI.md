@@ -50,24 +50,44 @@ Based on the `spec.md`, implement the test cases in `src/2025/day{dd}/index.test
 
 With the tests in place, implement your solution in `src/2025/day{dd}/index.ts`. The goal is to make all the tests pass.
 
-### 6. Submission
+### 6. Submission & Part 2
 
-Once your solution for Part 1 is working and all tests are passing, submit your answer.
+The puzzles are split into two parts. You must submit the correct answer for Part 1 to unlock Part 2.
 
-### 7. Getting Part 2
+#### Submitting Your Answer
 
-After submitting the correct answer for Part 1, the puzzle description will be updated to include the instructions for Part 2. To get the new description, re-run the `fetch-day` script for the same day.
+Once you have a solution, you can submit it using the `submit` script:
+
+```bash
+npm run submit {year} {day} {part} {answer}
+```
+
+- `{year}`: The year of the puzzle (e.g., 2025).
+- `{day}`: The day of the puzzle.
+- `{part}`: The part you are solving (1 or 2).
+- `{answer}`: Your calculated answer.
+
+For example, to submit the answer `12345` for Day 1, Part 1:
+
+```bash
+npm run submit 2025 1 1 12345
+```
+
+#### Unlocking Part 2
+
+After a successful submission for Part 1, re-run the `fetch-day` script for the same day to get the updated puzzle description for Part 2.
 
 ```bash
 npm run fetch-day {day}
 ```
 
-This will overwrite the `description.md` file with the updated content, which now includes the details for Part 2. You can then continue the workflow:
+This will overwrite `description.md` with the new content, which includes the instructions for Part 2. You can then repeat the development process:
 
-- Update `problem.md` with the Part 2 details.
-- Update `spec.md` with the Part 2 test cases.
-- Implement the Part 2 solution and tests.
-- Submit the Part 2 answer.
+- Update `problem.md` and `spec.md` for Part 2.
+- Add new tests for Part 2 in `index.test.ts`.
+- Implement the Part 2 solution.
+- Submit the final answer for Part 2.
+
 
 
 ## Automated Daily Setup

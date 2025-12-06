@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "vitest",
-    "fetch-day": "ts-node scripts/fetch-day.ts"
+    "fetch-day": "ts-node scripts/fetch-day.ts",
+    "submit": "ts-node scripts/submit.ts"
   },
   "keywords": [],
   "author": "",
