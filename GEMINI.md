@@ -2,6 +2,15 @@
 
 This document outlines the spec-driven workflow for solving the Advent of Code 2025 puzzles.
 
+## Authentication
+
+To make authenticated requests to the Advent of Code API, you need to provide your session cookie. This is stored in a `.env` file at the root of the project.
+
+- **File:** `.env`
+- **Variable:** `AOC_SESSION_COOKIE`
+
+This file is excluded from version control by `.gitignore` to keep your session cookie private.
+
 ## Workflow per Day
 
 For each day of Advent of Code, the following steps will be taken:
