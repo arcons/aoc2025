@@ -6,7 +6,7 @@ import { resolve } from 'path';
 config({ path: resolve(__dirname, '.env') });
 
 const year = process.argv[2];
-const day = process.argv[3];
+const day = parseInt(process.argv[3], 10).toString();
 const level = process.argv[4];
 const answer = process.argv[5];
 

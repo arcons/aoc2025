@@ -25,5 +25,31 @@ export function part1(input: string): number {
 }
 
 export function part2(input: string): number {
-  return 0;
+  const rotations = input.split('\n').filter(line => line.length > 0);
+  let position = 50;
+  let zeroCount = 0;
+
+  for (const rotation of rotations) {
+    const direction = rotation[0];
+    const distance = parseInt(rotation.slice(1), 10);
+    const current_pos = position;
+
+    if (direction === 'R') {
+        const num_k = Math.floor((current_pos + distance) / 100) - Math.ceil((current_pos + 1) / 100) + 1;
+        if (num_k > 0) {
+          zeroCount += num_k;
+        }
+        position += distance;
+    } else { // direction === 'L'
+        const num_k = Math.floor((current_pos - 1) / 100) - Math.ceil((current_pos - distance) / 100) + 1;
+        if (num_k > 0) {
+          zeroCount += num_k;
+        }
+        position -= distance;
+    }
+
+    position = (position % 100 + 100) % 100;
+  }
+
+  return zeroCount;
 }

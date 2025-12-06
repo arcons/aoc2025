@@ -54,7 +54,7 @@ With the tests in place, implement your solution in `src/2025/day{dd}/index.ts`.
 
 The puzzles are split into two parts. You must submit the correct answer for Part 1 to unlock Part 2.
 
-#### Submitting Your Answer
+#### Submitting Your Answer Part 1
 
 Once you have a solution, you can submit it using the `submit` script:
 
@@ -81,9 +81,28 @@ After a successful submission for Part 1, re-run the `fetch-day` script for the 
 npm run fetch-day {day}
 ```
 
+#### Submitting Your Answer Part 2
+
+Once you have a solution, you can submit it using the `submit` script:
+
+```bash
+npm run submit {year} {day} {part} {answer}
+```
+
+- `{year}`: The year of the puzzle (e.g., 2025).
+- `{day}`: The day of the puzzle.
+- `{part}`: The part you are solving (1 or 2).
+- `{answer}`: Your calculated answer.
+
+For example, to submit the answer `12345` for Day 1, Part 1:
+
+```bash
+npm run submit 2025 1 2 6689
+```
+
 This will overwrite `description.md` with the new content, which includes the instructions for Part 2. You can then repeat the development process:
 
-- Update `problem.md` and `spec.md` for Part 2.
+- Create new `problem.md` and create new `spec.md` for Part 2.
 - Add new tests for Part 2 in `index.test.ts`.
 - Implement the Part 2 solution.
 - Submit the final answer for Part 2.
