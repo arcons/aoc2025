@@ -38,7 +38,7 @@ L82
 
     it('should solve the puzzle', () => {
       // The expected value here is unknown until the code is run
-      expect(part2(input)).toBe(0);
+      expect(part2(input)).toBe(6689);
     });
   });
 });

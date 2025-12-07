@@ -4,7 +4,7 @@
   "description": "Advent of Code 2025",
   "main": "index.js",
   "scripts": {
-    "test": "vitest",
+    "test": "vitest --run",
     "fetch-day": "ts-node scripts/fetch-day.ts",
     "submit": "ts-node scripts/submit.ts"
   },
