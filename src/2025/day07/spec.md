@@ -1,0 +1,46 @@
+
+**Input:**
+A multiline string representing the tachyon manifold.
+- 'S' marks the starting point of the initial beam.
+- '.' represents empty space.
+- '^' represents a splitter.
+- Beams always move downwards.
+
+**Output (Part 1):**
+An integer representing the total number of times a beam is split.
+
+**Output (Part 2):**
+An integer representing the total number of unique horizontal positions (timelines) a particle can end up on.
+
+**Constraints:**
+- The grid will contain exactly one 'S'.
+- Beams continue until they hit a splitter or exit the manifold.
+
+**Example Test Case:**
+
+**Input:**
+```
+.......S.......
+...............
+.......^.......
+...............
+......^.^......
+...............
+.....^.^.^.....
+...............
+....^.^...^....
+...............
+...^.^...^.^...
+...............
+..^...^.....^..
+...............
+.^.^.^.^.^...^.
+...............
+```
+
+**Expected Output (Part 1):**
+`21`
+
+**Expected Output (Part 2):**
+`40`
+
