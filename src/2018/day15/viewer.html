@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 15 Battle Animation</title>
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; background: #222; color: #eee; }
+        canvas { border: 1px solid #555; background: #000; margin-top: 20px; }
+        .controls { margin-top: 20px; display: flex; gap: 10px; align-items: center; }
+        button { padding: 5px 10px; cursor: pointer; }
+        input[type=range] { width: 300px; }
+    </style>
+</head>
+<body>
+    <h1>Day 15: Beverage Bandits</h1>
+    <canvas id="canvas"></canvas>
+    <div class="controls">
+        <button id="playBtn">Play</button>
+        <button id="pauseBtn">Pause</button>
+        <input type="range" id="scrubber" min="0" max="0" value="0">
+        <span id="frameDisplay">Frame: 0</span>
+    </div>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const playBtn = document.getElementById('playBtn');
+        const pauseBtn = document.getElementById('pauseBtn');
+        const scrubber = document.getElementById('scrubber');
+        const frameDisplay = document.getElementById('frameDisplay');
+
+        let data = null;
+        let currentFrame = 0;
+        let isPlaying = false;
+        let fps = 10;
+        let lastTime = 0;
+        const CELL_SIZE = 15;
+
+        // Load JSON
+        fetch('animation.json')
+            .then(response => response.json())
+            .then(json => {
+                data = json;
+                init();
+            })
+            .catch(err => {
+                console.error("Failed to load animation.json", err);
+                alert("Please serve this directory or allow file access to load animation.json");
+            });
+
+        function init() {
+            canvas.width = data.width * CELL_SIZE;
+            canvas.height = data.height * CELL_SIZE;
+            scrubber.max = data.frames.length - 1;
+            drawFrame(0);
+            animate();
+        }
+
+        function drawFrame(frameIdx) {
+            if (!data) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw Map
+            // Fill background (Floor)
+            ctx.fillStyle = '#111';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw Walls
+            ctx.fillStyle = '#555';
+            for (const w of data.walls) {
+                ctx.fillRect(w.x * CELL_SIZE, w.y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+            }
+
+            // Draw Units
+            const frame = data.frames[frameIdx];
+            for (const u of frame) {
+                const x = u.x * CELL_SIZE + CELL_SIZE / 2;
+                const y = u.y * CELL_SIZE + CELL_SIZE / 2;
+                const r = CELL_SIZE / 2 - 2;
+
+                ctx.beginPath();
+                ctx.arc(x, y, r, 0, Math.PI * 2);
+                ctx.fillStyle = u.type === 'G' ? '#ff4444' : '#44ff44';
+                ctx.fill();
+                ctx.strokeStyle = '#fff';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+
+                // HP Bar
+                const hpPct = u.hp / 200;
+                ctx.fillStyle = '#0f0';
+                ctx.fillRect(u.x * CELL_SIZE + 2, u.y * CELL_SIZE - 2, (CELL_SIZE - 4) * hpPct, 2);
+            }
+
+            frameDisplay.innerText = `Frame: ${frameIdx} / ${data.frames.length - 1}`;
+        }
+
+        function animate(time) {
+            requestAnimationFrame(animate);
+            if (!isPlaying) return;
+
+            if (time - lastTime > 1000 / fps) {
+                lastTime = time;
+                currentFrame++;
+                if (currentFrame >= data.frames.length) {
+                    currentFrame = data.frames.length - 1;
+                    isPlaying = false;
+                }
+                scrubber.value = currentFrame;
+                drawFrame(currentFrame);
+            }
+        }
+
+        playBtn.addEventListener('click', () => {
+            if (currentFrame >= data.frames.length - 1) currentFrame = 0;
+            isPlaying = true;
+        });
+
+        pauseBtn.addEventListener('click', () => {
+            isPlaying = false;
+        });
+
+        scrubber.addEventListener('input', (e) => {
+            isPlaying = false;
+            currentFrame = parseInt(e.target.value);
+            drawFrame(currentFrame);
+        });
+    </script>
+</body>
+</html>
