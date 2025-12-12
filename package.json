@@ -6,7 +6,8 @@
   "scripts": {
     "test": "vitest --run",
     "fetch-day": "ts-node scripts/fetch-day.ts",
-    "submit": "ts-node scripts/submit.ts"
+    "submit": "ts-node scripts/submit.ts",
+    "animate": "ts-node src/2018/day15/generate_animation.ts"
   },
   "keywords": [],
   "author": "",
